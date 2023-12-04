@@ -6,6 +6,7 @@ use App\Functions\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
+use App\Models\Tecnology;
 use Illuminate\Http\Request;
 use App\Models\Type;
 class ProjectController extends Controller
@@ -29,7 +30,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $tecnologies = Tecnology::all();
+        return view('admin.projects.create', compact('types', 'tecnologies'));
     }
 
     /**
@@ -48,6 +50,10 @@ class ProjectController extends Controller
         // lo salvo nel db
 
         $new_project->save();
+
+        if(array_key_exists('tecnologies', $form_data)){
+            $new_project->tecnologies()->attach($form_data['tecnologies']);
+        }
         return redirect()->route('admin.projects.index',$new_project->id);
     }
 
@@ -71,7 +77,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view('admin.projects.edit', compact('types', 'project'));
+        $tecnologies = Tecnology::all();
+        return view('admin.projects.edit', compact('types', 'project', 'tecnologies'));
 
 
     }

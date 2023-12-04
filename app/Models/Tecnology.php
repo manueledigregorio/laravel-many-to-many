@@ -11,5 +11,7 @@ class Tecnology extends Model
 
     protected $fillable = ['name','slug', 'description', 'version'];
 
-
+    public function projects(){
+        return $this->belongsToMany(Project::class);
+    }
 }

@@ -54,6 +54,18 @@
                 <p class="text-danger">{{ $message }}</p>
             @enderror
         </div>
+        <div class="mb-3">
+            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                @foreach ($tecnologies as $tecnology)
+
+                    <input  type="checkbox" class="btn-check" id="technology{{$tecnology->id}}" autocomplete="off" name="tecnologies[]" value="{{$tecnology->id}}"
+                    @if ($project->tecnologies->contains($tecnology->id)) checked @endif>
+
+                    <label class="btn btn-outline-primary" for="technology{{$tecnology->id}}">{{$tecnology->name}}</label>
+
+                @endforeach
+        </div>
+        </div>
         <button type="submit" class="btn btn-primary">Invia</button>
         <button type="reset" class="btn btn-secondary">Annulla</button>
 

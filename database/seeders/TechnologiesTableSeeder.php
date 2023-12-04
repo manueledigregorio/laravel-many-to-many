@@ -16,7 +16,7 @@ class TechnologiesTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i=0; $i < 50 ; $i++) {
+        for ($i=0; $i < 10 ; $i++) {
             $technology = new Tecnology();
             $technology->name = $faker->name();
             $technology->description = $faker->word();

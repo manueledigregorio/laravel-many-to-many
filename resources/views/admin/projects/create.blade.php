@@ -40,6 +40,15 @@
                 <p class="text-danger">{{ $message }}</p>
             @enderror
         </div>
+        <div class="mb-3">
+            @foreach ($tecnologies as $tecnology)
+                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                    <input type="checkbox" class="btn-check" id="technology{{$tecnology->id}}" autocomplete="off" name="tecnologies[]" value="{{$tecnology->id}}">
+                    <label class="btn btn-outline-primary" for="technology{{$tecnology->id}}">{{$tecnology->name}}</label>
+              </div>
+            @endforeach
+
+        </div>
         <button type="submit" class="btn btn-primary">Invia</button>
         <button type="reset" class="btn btn-secondary">Annulla</button>
 
